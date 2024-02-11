@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Minestom:Minestom:a9e319f961'
+    implementation 'com.github.Minestom:Minestom:6d175c4ff9'
 }
 
 test {

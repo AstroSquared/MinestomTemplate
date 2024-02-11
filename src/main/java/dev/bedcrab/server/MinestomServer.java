@@ -3,6 +3,9 @@ package dev.bedcrab.server;
 import dev.bedcrab.commands.ServerCommands;
 import dev.bedcrab.events.ServerEvents;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.extras.MojangAuth;
+import net.minestom.server.instance.InstanceContainer;
+import net.minestom.server.instance.InstanceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,11 +15,14 @@ public class MinestomServer {
     private static MinestomServer instance = null;
     private static final Logger logger = LoggerFactory.getLogger(MinestomServer.class);
     public static final Properties configuration = new Properties();
+    private static InstanceContainer instanceContainer;
 
     /**
      * Pre-startup tasks: executed before the server starts. Throw {@link RuntimeException}s if necessary.
      */
     private void preStartup() throws RuntimeException {
+        // Enable skins support
+        MojangAuth.init();
         // add database code here or something
     }
 
@@ -24,7 +30,14 @@ public class MinestomServer {
      * Server startup logic
      */
     private void onStartup() {
+
+        // Set instanceContainer to be an empty instance
+        InstanceManager manager = MinecraftServer.getInstanceManager();
+        instanceContainer = manager.createInstanceContainer();
+
+        // (For hosts) Send the bukkit server start message
         logger.info("Done (yeepee)! For help, type \"help\" or \"?\"");
+
     }
 
     /**
@@ -43,7 +56,7 @@ public class MinestomServer {
             ConfigLoader.run();
             preStartup();
         } catch (RuntimeException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             System.exit(1);
             return;
         }
@@ -68,5 +81,9 @@ public class MinestomServer {
     public static MinestomServer getInstance() {
         if (instance == null) instance = new MinestomServer();
         return instance;
+    }
+
+    public static InstanceContainer getInstanceContainer() {
+        return instanceContainer;
     }
 }
