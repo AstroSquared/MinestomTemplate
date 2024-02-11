@@ -56,7 +56,7 @@ public class MinestomServer {
             ConfigLoader.run();
             preStartup();
         } catch (RuntimeException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             System.exit(1);
             return;
         }
