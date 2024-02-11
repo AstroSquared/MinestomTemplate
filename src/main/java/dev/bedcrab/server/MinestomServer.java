@@ -3,6 +3,9 @@ package dev.bedcrab.server;
 import dev.bedcrab.commands.ServerCommands;
 import dev.bedcrab.events.ServerEvents;
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.extras.MojangAuth;
+import net.minestom.server.instance.InstanceContainer;
+import net.minestom.server.instance.InstanceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,15 +15,14 @@ public class MinestomServer {
     private static MinestomServer instance = null;
     private static final Logger logger = LoggerFactory.getLogger(MinestomServer.class);
     public static final Properties configuration = new Properties();
-    public InstanceContainer instanceContainer;
+    private static InstanceContainer instanceContainer;
 
     /**
      * Pre-startup tasks: executed before the server starts. Throw {@link RuntimeException}s if necessary.
      */
     private void preStartup() throws RuntimeException {
-        // Enable skins and Optifine support
+        // Enable skins support
         MojangAuth.init();
-        OptifineSupport.enable();
         // add database code here or something
     }
 
@@ -79,5 +81,9 @@ public class MinestomServer {
     public static MinestomServer getInstance() {
         if (instance == null) instance = new MinestomServer();
         return instance;
+    }
+
+    public static InstanceContainer getInstanceContainer() {
+        return instanceContainer;
     }
 }
