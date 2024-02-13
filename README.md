@@ -9,7 +9,7 @@ This quickstart is for Intellij IDEA.
 1. Using GitHub, create a repo from the template (public or private)
     * If you don't want GitHub to say `Generated from ...`, you can download as zip and make a new repo instead, then upload the files to your repo
 2. In Intellij IDEA, use `Get from VCS` and select your new repo
-3. Go to the `build.gradle` file and change `rootProject.name` to your project's name
+3. Go to the `settings.gradle` file and change `rootProject.name` to your project's name
     * Commit and push (optional)
 4. Run Main.main() any way you want
 5. Start developing!

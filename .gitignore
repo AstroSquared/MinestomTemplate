@@ -44,4 +44,4 @@ bin/
 ### Minestom ###
 ?
 extensions
-server.properties
+/server.properties
