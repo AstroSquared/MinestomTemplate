@@ -11,7 +11,7 @@ This quickstart is for Intellij IDEA.
 2. In Intellij IDEA, use `Get from VCS` and select your new repo
 3. Go to the `settings.gradle` file and change `rootProject.name` to your project's name
     * Commit and push (optional)
-4. Run Main.main() any way you want
+4. Run the `run` task under the `application` category
 5. Start developing!
     * The default port is 25565
 

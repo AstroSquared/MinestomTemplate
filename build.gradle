@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'application'
 }
 
 group 'dev.bedcrab'
@@ -13,6 +15,17 @@ repositories {
 dependencies {
     // https://central.sonatype.com/artifact/net.minestom/minestom-snapshots
     implementation 'net.minestom:minestom-snapshots:7320437640' // this is one of the few commit hashes without letters, somehow
+
+    // logging
+    implementation "org.apache.logging.log4j:log4j-api:2.20.0"
+    implementation "org.apache.logging.log4j:log4j-core:2.20.0"
+    implementation "org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0"
+    implementation "org.slf4j:slf4j-api:2.0.7"
+}
+
+application {
+    mainClassName 'dev.bedcrab.Main'
+    tasks.run.workingDir(new File(rootProject.projectDir, "run"))
 }
 
 test {
